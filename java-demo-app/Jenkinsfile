@@ -4,7 +4,7 @@ pipeline {
         stage('Compile') {
             steps {
                 echo 'Compiling code'
-                sh 'mvn compile Dskip test -f java-demo-app/pom.xml'
+                sh 'mvn install -DskipTests -f java-demo-app/pom.xml'
             }
         }
         stage('UnitTest') {
