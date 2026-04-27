@@ -4,12 +4,13 @@ pipeline {
         stage('Compile') {
             steps {
                 echo 'Compiling code'
-                sh 'mvn compile -f java-demo-app/pom.xml'
+                sh 'mvn compile Dskip test -f java-demo-app/pom.xml'
             }
         }
         stage('UnitTest') {
             steps {
                 echo 'Unit test'
+                sh 'mvn test -f java-demo-app/pom.xml'
             }
         }
             stage('SecurityScan') {
@@ -22,9 +23,10 @@ pipeline {
                 echo 'QGate'
             }
         }
-        stage('CreateImage') {
+        stage('BuildApp') {
             steps {
-                echo 'Creating docker image'
+                echo 'BuildApp'
+                sh 'mvn package -f java-demo-app/pom.xml'
             }
         }
             stage('PushImage') {
