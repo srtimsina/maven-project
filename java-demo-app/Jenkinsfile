@@ -28,6 +28,11 @@ pipeline {
                 echo 'BuildApp'
                 sh 'mvn package -f java-demo-app/pom.xml'
             }
+          post {
+          success {
+archiveArtifacts artifacts: '*/*/*.war', followSymlinks: false, onlyIfSuccessful: true
+}
+}
         }
             stage('PushImage') {
             steps {
