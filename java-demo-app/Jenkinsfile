@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+    stages {
+        stage('Compile') {
+            steps {
+                echo 'Compiling code'
+            }
+        }
+        stage('UnitTest') {
+            steps {
+                echo 'Unit test'
+            }
+        }
+            stage('SecurityScan') {
+            steps {
+                echo 'Scan vulnerability'
+            }
+        }
+        stage('QualityGate') {
+            steps {
+                echo 'QGate'
+            }
+        }
+        stage('CreateImage') {
+            steps {
+                echo 'Creating docker image'
+            }
+        }
+            stage('PushImage') {
+            steps {
+                echo 'Push Image to registry'
+            }
+        }
+    }
+}
+
