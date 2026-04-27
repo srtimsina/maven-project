@@ -4,6 +4,7 @@ pipeline {
         stage('Compile') {
             steps {
                 echo 'Compiling code'
+                sh 'mvn compile -f java-demo-app/pom.xml'
             }
         }
         stage('UnitTest') {
