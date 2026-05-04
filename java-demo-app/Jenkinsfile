@@ -69,7 +69,10 @@ archiveArtifacts artifacts: '*/*/*.war', followSymlinks: false, onlyIfSuccessful
                 '''
             }
 }
-
+post { 
+        always { 
+            echo 'We are in post-always'
+        }
 
 
     }
