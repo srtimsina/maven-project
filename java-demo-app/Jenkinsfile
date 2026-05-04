@@ -30,16 +30,16 @@ pipeline {
             }
           post {
           success {
-archiveArtifacts artifacts: '*/*/*.war', followSymlinks: false, onlyIfSuccessful: true
-}
-}
+            archiveArtifacts artifacts: '*/*/*.war', followSymlinks: false, onlyIfSuccessful: true
+            }
+            }
         }
             stage('Build docker image')
             {
          steps {
- sh 'docker image build -t registry.local/java-app:$BUILD_NUMBER .'
-}
-}
+          sh 'docker image build -t registry.local/java-app:$BUILD_NUMBER .'
+          }
+        }
             stage('PushImage') {
             steps {
                 echo 'Push Image to registry'
@@ -68,14 +68,14 @@ archiveArtifacts artifacts: '*/*/*.war', followSymlinks: false, onlyIfSuccessful
                 docker run -itd --name tomcatInstanceProd -p 8084:8080 registry.local/java-app:$BUILD_NUMBER
                 '''
             }
-}
-post { 
-        always { 
-            echo 'We are in post-always'
         }
+    }
+    post { 
+                always { 
+                    echo 'We are in post-always'
+                }
 
 
     }
-}
 }
 
