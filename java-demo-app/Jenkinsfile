@@ -2,6 +2,9 @@ pipeline {
     agent any
     stages {
         stage('Compile') {
+            agent {
+                label 'ubuntu-vm1'
+            }
             steps {
                 echo 'Compiling code'
                 sh 'mvn install -DskipTests -f java-demo-app/pom.xml'
